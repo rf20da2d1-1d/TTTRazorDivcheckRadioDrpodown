@@ -1,0 +1,43 @@
+﻿@page
+@model TTTRazorDivcheckRadioDrpodown.Pages.Teachers.IndexModel
+@{
+    ViewData["Title"] = "Teachers Overview";
+}
+<div class="text-center">
+    <h1 class="jumbotron" style="background-color: cadetblue; color: brown">Teachers</h1>
+<table class="table">
+    <thead class="table-primary">
+    <th>Id</th>
+    <th>Navn</th>
+    <th>Køn</th>
+    <th>Sted</th>
+    <th>Fag</th>
+    </thead>
+    <tbody>
+        @foreach (var t in Model.Teachers)
+        {
+            <tr>
+                <td>@t.Id</td>
+                <td>@t.Name</td>
+                @if (@t.IsMale)
+                {
+                    <td>Mand</td>
+                }
+                else
+                {
+                    <td>Kvinde</td>
+                }
+                <td>@t.WorkingLocation</td>
+                <td>@t.GetCoursesText</td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+<p></p>
+<a asp-page="CreateTeacher">Laver en ny Underviser</a>
+</div>
+
+
+
+

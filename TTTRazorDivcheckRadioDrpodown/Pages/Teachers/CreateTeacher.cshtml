@@ -1,0 +1,67 @@
+﻿@page
+@model TTTRazorDivcheckRadioDrpodown.Pages.Teachers.CreateTeacherModel
+@{
+    ViewData["Title"] = "Create a Teachers";
+}
+
+
+<h1>Create A Teacher</h1>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <label class="custom-control-label">Navn</label>
+                <input asp-for="Teacher.Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                @* Radio buttons
+            Link: https://www.learnrazorpages.com/razor-pages/forms/radios
+                *@
+                <label class="custom-control-label">Køn</label><br>
+                @foreach (var gender in Model.Genders)
+                {
+                    <input type="radio" asp-for="Gender" value="@gender" /> @gender<br />
+                }
+            </div>
+            <div class="form-group">
+                @* Drop Down Box
+            Link: https://www.learnrazorpages.com/razor-pages/forms/select-lists
+                *@
+                <label class="custom-control-label">Arbejdsplads</label><br />
+                <select id="Place" name="Place" asp-for="Place" class="form-control">
+                    @foreach (var l in Model.Locations)
+                    {
+                        <option value="@l">@l</option>
+                    }
+                </select>
+
+            </div>
+            <div class="form-group">
+                @* Check boxes multiple selection
+            Link: https://www.learnrazorpages.com/razor-pages/forms/checkboxes
+                *@
+                <label class="custom-control-label">Underviser i Fag</label><br />
+                @foreach (var c in Model.Courses)
+                {
+                    <input name="AreChecked" type="checkbox" value="@c" /> @c<br />
+                }
+
+
+            </div>
+
+            <div class="form-group">
+                <label class="custom-control-label">Bare noget text</label><br />
+                <textarea asp-for="Text" cols="120" class="form-control" ></textarea>
+
+            </div>
+
+            <div class="form-group">
+                    <input type="submit" value="Create Teacher" class="btn btn-primary" />
+                </div>
+
+        </form>
+    </div>
+</div>
+
+<a asp-page="Index">Go back to Teachers</a>
+
