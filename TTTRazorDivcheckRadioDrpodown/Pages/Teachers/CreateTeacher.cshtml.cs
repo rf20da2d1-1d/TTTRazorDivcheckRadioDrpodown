@@ -6,10 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TTTRazorDivcheckRadioDrpodown.mockData;
 using TTTRazorDivcheckRadioDrpodown.model;
+using TTTRazorDivcheckRadioDrpodown.Pages.Shared;
 
 namespace TTTRazorDivcheckRadioDrpodown.Pages.Teachers
 {
-    public class CreateTeacherModel : PageModel
+    public class CreateTeacherModel : ProtectedPage
     {
 
         private ITeacherService _teacherService;
@@ -34,9 +35,9 @@ namespace TTTRazorDivcheckRadioDrpodown.Pages.Teachers
         public string Place { get; set; }
 
         [BindProperty]
-        public List<String> AreChecked{ get; set; }
+        public List<int> AreChecked{ get; set; }
 
-
+        
         [BindProperty]
         public String Text { get; set; }
 
@@ -58,16 +59,17 @@ namespace TTTRazorDivcheckRadioDrpodown.Pages.Teachers
 
         public List<string> Courses => _courses;
 
-        public void OnGet()
-        {
 
+        protected override IActionResult GetRequest()
+        {
+            return Page();
         }
 
-        public IActionResult OnPost()
+        protected override IActionResult PostRequest()
         {
             _teacher.IsMale = Gender == "Male";
             _teacher.WorkingLocation = Place; //Request.Form["locations"];
-            _teacher.Courses.AddRange(AreChecked); 
+            //_teacher.Courses.AddRange(AreChecked); 
 
             _teacherService.Add(_teacher);
 

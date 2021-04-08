@@ -25,6 +25,8 @@ namespace TTTRazorDivcheckRadioDrpodown
         {
             services.AddRazorPages();
             services.AddSingleton<ITeacherService, TeacherService>();
+
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +44,7 @@ namespace TTTRazorDivcheckRadioDrpodown
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
 
             app.UseAuthorization();
 

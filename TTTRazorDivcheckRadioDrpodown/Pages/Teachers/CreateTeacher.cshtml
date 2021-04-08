@@ -1,7 +1,18 @@
 ﻿@page
+@using Microsoft.AspNetCore.Http
 @model TTTRazorDivcheckRadioDrpodown.Pages.Teachers.CreateTeacherModel
 @{
     ViewData["Title"] = "Create a Teachers";
+    //if (HttpContext.Session.Keys.Contains("User"))
+    //{
+    //    ViewData["Login"] = "LoggedIn";
+    //    ViewData["User"] = HttpContext.Session.GetString("User");
+    //}
+    //else
+    //{
+    //    ViewData["Login"] = "NotLoggedIn";
+    //}
+
 }
 
 
@@ -15,7 +26,7 @@
             </div>
             <div class="form-group">
                 @* Radio buttons
-            Link: https://www.learnrazorpages.com/razor-pages/forms/radios
+                    Link: https://www.learnrazorpages.com/razor-pages/forms/radios
                 *@
                 <label class="custom-control-label">Køn</label><br>
                 @foreach (var gender in Model.Genders)
@@ -23,27 +34,32 @@
                     <input type="radio" asp-for="Gender" value="@gender" /> @gender<br />
                 }
             </div>
-            <div class="form-group">
-                @* Drop Down Box
-            Link: https://www.learnrazorpages.com/razor-pages/forms/select-lists
-                *@
-                <label class="custom-control-label">Arbejdsplads</label><br />
-                <select id="Place" name="Place" asp-for="Place" class="form-control">
-                    @foreach (var l in Model.Locations)
-                    {
-                        <option value="@l">@l</option>
-                    }
-                </select>
-
+            <div class="form-group">-->
+            @* Drop Down Box
+                Link: https://www.learnrazorpages.com/razor-pages/forms/select-lists
+            *@
+            <label class="custom-control-label">Arbejdsplads</label><br />
+            <select id="Place" name="Place" asp-for="Place" class="form-control">
+                @foreach (var l in Model.Locations)
+                {
+                    <option value="@l">@l</option>
+                }
+            </select>
             </div>
+
+            
             <div class="form-group">
                 @* Check boxes multiple selection
-            Link: https://www.learnrazorpages.com/razor-pages/forms/checkboxes
+        Link: https://www.learnrazorpages.com/razor-pages/forms/checkboxes
                 *@
                 <label class="custom-control-label">Underviser i Fag</label><br />
-                @foreach (var c in Model.Courses)
+                @*@foreach (var c in Model.Courses)
                 {
                     <input name="AreChecked" type="checkbox" value="@c" /> @c<br />
+                }*@
+                @for (int i = 0; i < Model.Courses.Count; i++)
+                {
+                    <input name="AreChecked" type="checkbox" value="@i" /> @Model.Courses[i]<br />
                 }
 
 
@@ -51,13 +67,13 @@
 
             <div class="form-group">
                 <label class="custom-control-label">Bare noget text</label><br />
-                <textarea asp-for="Text" cols="120" class="form-control" ></textarea>
+                <textarea asp-for="Text" cols="120" class="form-control"></textarea>
 
             </div>
 
             <div class="form-group">
-                    <input type="submit" value="Create Teacher" class="btn btn-primary" />
-                </div>
+                <input type="submit" value="Create Teacher" class="btn btn-primary" />
+            </div>
 
         </form>
     </div>

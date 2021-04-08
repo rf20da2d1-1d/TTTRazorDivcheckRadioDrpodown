@@ -1,7 +1,17 @@
 ﻿@page
+@using Microsoft.AspNetCore.Http
 @model TTTRazorDivcheckRadioDrpodown.Pages.Teachers.IndexModel
 @{
     ViewData["Title"] = "Teachers Overview";
+    //if (HttpContext.Session.Keys.Contains("User"))
+    //{
+    //    ViewData["Login"] = "LoggedIn";
+    //    ViewData["User"] = HttpContext.Session.GetString("User");
+    //}
+    //else
+    //{
+    //    ViewData["Login"] = "NotLoggedIn";
+    //}
 }
 <div class="text-center">
     <h1 class="jumbotron" style="background-color: cadetblue; color: brown">Teachers</h1>
